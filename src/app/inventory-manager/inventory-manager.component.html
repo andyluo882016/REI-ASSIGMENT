@@ -1,0 +1,99 @@
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      Welcome Shopping Online
+    </h1>
+    <hr />
+    <div class="btn-group" role="group" aria-label="Basic example">     
+      <label for="lname">Location Name</label>
+      <select [(ngModel)]="lname">
+        <option value="">No Default Layout</option>
+        <option *ngFor="let ln of availableLocation" [value]="ln">
+          {{ln}}
+        </option>
+      </select>
+    </div>
+    <!--</div>-->
+    <hr />
+    <div>
+
+      <button style="margin:10px" (click)="showInventoryProduct()" class="btn btn-primary">Find All Products</button>
+      <button style="margin:10px" (click)="showAllStores()" class="btn btn-secondary">Find All store</button>
+      <button style="margin:10px" (click)="showNearByStores(lname)" class="btn btn-secondary">Find Near By Store</button>
+      <button style="margin:10px" (click)="clearupTables()" class="btn btn-secondary">Clear Up Tables</button>
+    </div>
+    <!---->
+    <div style="text-align:center">
+      <table class="table table-bordered" *ngIf="items">
+        <thead></thead>
+        <tr>
+          <th>Product Tracking ID</th>
+          <th>Product ID</th>
+          <th>Quantity</th>
+          <th>Location Name</th>
+          <th>Location State</th>
+          <th>Update Product</th>
+          <th>Delete Product</th>
+        </tr>
+
+        <tbody>
+          <tr *ngFor="let product of items">
+            <td>{{product.id}}</td>
+            <td>{{product.productId}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.location.name}}</td>
+            <td>{{product.location.state}}</td>
+            <td> <button type="button" class="btn btn-primary">Update</button></td>
+            <td> <button type="button" class="btn btn-primary">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <hr />
+    <div style="text-align:center">
+      <table class="table table-bordered" *ngIf="stores">
+        <thead></thead>
+        <tr>
+          <th>Store ID</th>
+          <th>Store Name</th>
+          <th>Location Name</th>
+          <th>Location State</th>
+        </tr>
+
+        <tbody>
+          <tr *ngFor="let mystore of stores">
+            <td>{{mystore.id}}</td>
+            <td>{{mystore.name}}</td>
+            <td>{{mystore.location.name}}</td>
+            <td>{{mystore.location.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr />
+    <div style="text-align:center">
+      <table class="table table-bordered" *ngIf="localStore">
+        <thead></thead>
+        <tr>
+          <th>Store ID</th>
+          <th>Store Name</th>
+          <th>Location Name</th>
+          <th>Location State</th>
+
+        </tr>
+
+        <tbody>
+          <tr *ngFor="let mystore of localStore">
+            <td>{{mystore.id}}</td>
+            <td>{{mystore.name}}</td>
+            <td>{{mystore.location.name}}</td>
+            <td>{{mystore.location.state}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,141 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<!-- bootstrap css -->
+<link href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+  a {
+    cursor: pointer
+  }
+</style>
+<h2>The Product Checking Out Here</h2>
+
+<div class="container">
+
+
+  <div style="text-align:center">
+    <table style="width:100%">
+      <tr>
+        <th>Lcation name</th>
+        <th>Total Number</th>
+        <th>Product Id</th>
+        <th>Brand</th>
+        <th>Describtion</th>
+        <th>price</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="lname">Location Name</label>
+          <select [(ngModel)]="lname">
+            <option value="">No Default Layout</option>
+            <option *ngFor="let ln of availableLocation" [value]="ln">
+              {{ln}}
+            </option>
+          </select>
+        </td>
+        <td>
+
+          <label for="total">Total Number</label>
+          <input type="text" class="form-control" id="total"
+                 [(ngModel)]="total" name="total">
+
+        </td>
+
+        <td>
+          <label for="productId">Product ID</label>
+          <select [(ngModel)]="product.productId">
+            <option value="">No Default Layout</option>
+            <option *ngFor="let l of availableProducts" [value]="l.productId">
+              {{l.productId}}
+            </option>
+          </select>
+        </td>
+        <td>
+          <label for="brand">Brand</label>
+          <select [(ngModel)]="product.brand">
+            <option value="">No Default Layout</option>
+            <option *ngFor="let l of availableProducts" [value]="l.brand">
+              {{l.brand}}
+            </option>
+          </select>
+        </td>
+        <td>
+          <label for="description">description</label>
+          <select [(ngModel)]="product.description">
+            <option value="">No Default Layout</option>
+            <option *ngFor="let l of availableProducts" [value]="l.description">
+              {{l.description}}
+            </option>
+          </select>
+        </td>
+        <td>
+          <label for="price">price</label>
+          <select [(ngModel)]="product.price">
+            <option value="">No Default Layout</option>
+            <option *ngFor="let l of availableProducts" [value]="l.price">
+              {{l.price}}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <br />
+    <div>
+      
+      <button style="margin:10px" (click)="checkoutcart(lname, total, product)" class="btn btn-primary">Check Out Products</button>
+      <button style="margin:10px" (click)="cleanPurchase()"  class="btn btn-secondary">Reset Table</button>
+      <button style="margin:10px" (click)="sendMyMessage()" class="btn btn-secondary">Complete The Check Out</button>
+      <button style="margin:10px" (click)="clearMessage()" class="btn btn-secondary">Clear Message</button>
+    </div>
+    <hr />
+   
+    <div>
+
+      <table style="width:100%" *ngIf="testchproduct">
+        <tr>
+
+          <th>ID</th>
+          <th>Brand</th>
+          <th>Describtion</th>
+          <th>price</th>
+          <th>amout number</th>
+          <th>to pay</th>
+        </tr>
+
+
+        <tbody>
+          <tr *ngFor="let pd of testchproduct">
+
+            <td>{{pd.product.productId}}</td>
+            <td>{{pd.product.brand}}</td>
+            <td>{{pd.product.description}}</td>
+            <td>{{pd.product.price}}</td>
+            <td>{{pd.amount}}</td>
+            <td>{{pd.topay}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <table class="rei">
+        <thead></thead>
+        <tr>
+          <th>Total Number</th>
+          <th>Total Aount to Pay</th>
+
+        </tr>
+        <tbody>
+          <tr *ngIf="cart">
+            <td>{{updateTatol}}</td>
+            <td>{{cart.charge}}</td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+</div>
+
+
